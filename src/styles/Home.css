@@ -1,0 +1,296 @@
+/* ===========================================================
+   GLOBAL FIXES (PREVENT HORIZONTAL SCROLL)
+   =========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden; /* prevents left/right screen movement */
+  width: 100%;
+}
+
+/* Root parallax variables */
+.home-root {
+  --mx: 0px;
+  --my: 0px;
+  --scroll-y: 0px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ===========================================================
+   DECORATIVE FLOATING SHAPES
+   =========================================================== */
+.floating-shape {
+  position: absolute;
+  pointer-events: none;
+  filter: blur(18px);
+  opacity: 0.7;
+  transition: transform 0.12s linear;
+  transform: translate(var(--mx), var(--my));
+  max-width: 90vw; /* prevents oversize shapes */
+}
+
+/* Shape A */
+.shape-a {
+  top: 8%;
+  left: 6%;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 20% 20%, rgba(0,255,210,0.65), rgba(0,120,255,0.15));
+  transform: translate(calc(var(--mx) * 0.6), calc(var(--my) * 0.6));
+}
+
+/* Shape B */
+.shape-b {
+  bottom: 6%;
+  right: 8%;
+  width: 220px;
+  height: 220px;
+  border-radius: 48%;
+  background: radial-gradient(circle at 80% 20%, rgba(255,130,180,0.65), rgba(255,200,200,0.12));
+  transform: translate(calc(var(--mx) * -0.7), calc(var(--my) * -0.7));
+}
+
+/* Shape C */
+.shape-c {
+  top: 18%;
+  right: 24%;
+  width: 150px;
+  height: 150px;
+  border-radius: 40%;
+  background: linear-gradient(135deg, rgba(139,229,255,0.7), rgba(101,255,167,0.16));
+  transform: translate(calc(var(--mx) * -0.4), calc(var(--my) * 0.5));
+}
+
+/* ===========================================================
+   BACKGROUND BLOB
+   =========================================================== */
+.bg-blob {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  transform: translateX(-50%) translateY(calc(var(--scroll-y) * -0.03));
+  width: min(700px, 90vw);
+  height: auto;
+  opacity: 0.5;
+  filter: blur(22px) saturate(1.2);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===========================================================
+   HERO BANNER
+   =========================================================== */
+.home-banner {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 70px;
+  min-height: 420px;
+  color: white;
+  background: linear-gradient(135deg, #0077ff 0%, #00d2a8 100%);
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  overflow: hidden; /* prevents image overflow */
+}
+
+/* Left content */
+.banner-left {
+  width: 55%;
+  min-width: 0;
+  z-index: 6;
+}
+
+.banner-left h1 {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1.06;
+  margin: 0;
+  letter-spacing: -0.6px;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.banner-left h1 span {
+  background: rgba(255,255,255,0.08);
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+/* hero text */
+.banner-subtext {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+.banner-tagline {
+  margin-top: 20px;
+  font-size: 17px;
+  font-style: italic;
+}
+
+/* CTA buttons */
+.cta-row {
+  margin-top: 26px;
+  display: flex;
+  gap: 16px;
+}
+
+.cta {
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 15px;
+  border: none;
+  transition: 0.25s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+
+.cta.primary {
+  background: linear-gradient(90deg, #0011ff, #00ffd1);
+  color: #042033;
+}
+
+.cta.ghost {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.cta:hover {
+  transform: translateY(-6px);
+}
+
+/* Right Image */
+.banner-right {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1100px;
+  min-width: 0;
+}
+
+.banner-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 22px;
+  object-fit: cover;
+  box-shadow: 0 22px 60px rgba(2,10,30,0.36);
+  transition: transform 0.15s linear;
+}
+
+/* ===========================================================
+   OVERVIEW SECTION
+   =========================================================== */
+.home-overview {
+  position: relative;
+  z-index: 4;
+  padding: 60px 70px;
+  background: linear-gradient(180deg, #fff6ee, #ffd9c3);
+  border-radius: 18px;
+  max-width: 1100px;
+  margin: 30px auto;
+  box-shadow: 0 18px 50px rgba(115,45,20,0.06);
+}
+
+.home-overview h2 {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
+.overview-text {
+  color: #423b38;
+  font-size: 18px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.overview-highlight {
+  font-weight: 700;
+  margin-top: 18px;
+  color: #c3412e;
+}
+
+/* ===========================================================
+   STATS SECTION
+   =========================================================== */
+.home-stats {
+  padding: 90px 40px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  background: linear-gradient(180deg, #eafff0, #d2fff0);
+}
+
+.stat-box {
+  width: 200px;
+  text-align: center;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 14px 42px rgba(0,0,0,0.08);
+  transition: 0.35s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-12px) scale(1.06);
+}
+
+.stat-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+  animation: iconFloat 3.6s infinite ease-in-out;
+}
+
+@keyframes iconFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.stat-box h3 {
+  font-size: 44px;
+  color: #007f56;
+}
+
+.stat-box p {
+  color: #25423a;
+  margin-top: 8px;
+}
+
+/* ===========================================================
+   RESPONSIVE FIXES
+   =========================================================== */
+@media (max-width: 1024px) {
+  .banner-left { width: 100%; }
+  .banner-right { width: 100%; }
+  .home-banner { flex-direction: column-reverse; text-align: center; }
+}
+
+@media (max-width: 820px) {
+  .home-banner {
+    padding: 50px 30px;
+  }
+  .banner-image {
+    width: 230px;
+    height: 230px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-left h1 { font-size: 30px; }
+  .banner-subtext { font-size: 16px; }
+  .stat-box { width: 45%; }
+}

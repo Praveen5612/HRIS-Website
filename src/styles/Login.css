@@ -1,0 +1,196 @@
+/* ================== PAGE WRAPPER ================== */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  background: #9595e1; /* clean professional background */
+  padding: 20px;
+}
+
+/* ================== ULTRA PREMIUM LOGIN CARD ================== */
+.login-card {
+  position: relative;
+  width: 420px;
+
+  /* FORM BACKGROUND COLOR YOU REQUESTED */
+  background: linear-gradient(
+    145deg,
+    #e4a6a6 0%,
+    #7582c0 40%,
+    #020204 100%
+  );
+
+  padding: 45px;
+  border-radius: 22px;
+
+  /* Stronger glass effect */
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+
+  /* Rich depth shadow */
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.18),
+    0 8px 20px rgba(100, 100, 255, 0.10);
+
+  animation: fadeIn 0.8s ease-out;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* HOVER = LIFTED 3D EFFECT */
+.login-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.22),
+    0 10px 25px rgba(120, 120, 255, 0.15);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ================== LOGO ================== */
+.login-logo {
+  width: 95px;
+  height: 95px;
+  border-radius: 20px;
+  margin: 0 auto 15px;
+  display: block;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease;
+}
+
+.login-logo:hover {
+  transform: scale(1.08);
+}
+
+/* ================== HEADINGS ================== */
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #1d1d1f;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 15px;
+  color: #5f6368;
+}
+
+/* ================== LABELS ================== */
+label {
+  font-weight: 600;
+  margin: 12px 0 6px;
+  display: block;
+  color: #333;
+  font-size: 14px;
+}
+
+/* ================== INPUT FIELDS ================== */
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #d4d7e2;
+
+  background: #ffffff;
+  font-size: 15px;
+
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ON FOCUS → glow + border animation */
+input:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 8px rgba(108, 92, 231, 0.35);
+}
+
+/* DISABLED OTP */
+.disabled {
+  background: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/* ================== PASSWORD TOGGLE ================== */
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+.toggle-eye:hover {
+  transform: translateY(-50%) scale(1.15);
+  opacity: 0.8;
+}
+
+/* ================== BUTTONS ================== */
+.otp-btn,
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+
+  transition: 0.3s ease;
+  margin-top: 14px;
+
+  color: white;
+}
+
+/* GET OTP BUTTON */
+.otp-btn {
+  background: linear-gradient(135deg, #7b4bff, #5835d4);
+  box-shadow: 0 6px 16px rgba(123, 75, 255, 0.45);
+}
+
+.otp-btn:hover {
+  background: linear-gradient(135deg, #6e3cf5, #4a29c2);
+  transform: translateY(-3px);
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  background: linear-gradient(135deg, #00bf87, #009f6a);
+  box-shadow: 0 6px 16px rgba(0, 200, 130, 0.35);
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #00a474, #00885d);
+  transform: translateY(-3px);
+}
+
+/* DISABLED OTP BUTTON */
+.otp-btn:disabled {
+  background: #b9b9b9 !important;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* BACK OPTION */
+.back-option {
+  text-align: center;
+  margin-top: 15px;
+  color: #4b4b4b;
+  cursor: pointer;
+}
+
+.back-option:hover {
+  text-decoration: underline;
+}
