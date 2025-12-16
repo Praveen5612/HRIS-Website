@@ -63,6 +63,7 @@ const Departments = () => {
           ))}
         </div>
       </section>
+    <Careers/>
     </div>
   );
 };

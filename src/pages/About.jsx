@@ -232,7 +232,7 @@ const About = () => {
           </div>
         </section>
         
-
+      <Departments/>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Careers.css";
+import Contact from "./Contact";
 
 const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -199,6 +200,7 @@ const Careers = () => {
           </div>
         </div>
       )}
+      <Contact/>
     </div>
   );
 };
