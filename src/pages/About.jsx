@@ -1,13 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/About.css";
-// import ceoImg from "../assets/ceo.jpg";
-// import leader1 from "../assets/leader1.jpg";
-// import leader2 from "../assets/leader2.jpg";
-// import leader3 from "../assets/leader3.jpg";
-import logo from "../assets/logo.jpg"
+import logo from "../assets/logo.jpg";
 import Departments from "./Departments";
-import Careers from "./Careers";
-import Contact from "./Contact";
 
 const About = () => {
   const rootRef = useRef(null);
@@ -15,7 +9,7 @@ const About = () => {
   const idleTimeoutRef = useRef(null);
   const pointer = useRef({ x: 0, y: 0 });
 
-  // small parallax for decorative shapes and subtle 3D on hoverable cards
+  // subtle parallax (unchanged logic)
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -26,12 +20,10 @@ const About = () => {
       pointer.current.x = (e.clientX / w) * 2 - 1;
       pointer.current.y = (e.clientY / h) * 2 - 1;
 
-      // Start the RAF loop if not already running
       if (!rafRef.current) {
         rafRef.current = requestAnimationFrame(animate);
       }
 
-      // Reset idle timer so we stop the loop after inactivity
       if (idleTimeoutRef.current) clearTimeout(idleTimeoutRef.current);
       idleTimeoutRef.current = setTimeout(() => {
         if (rafRef.current) {
@@ -45,30 +37,21 @@ const About = () => {
       const px = pointer.current.x;
       const py = pointer.current.y;
 
-      // Only update CSS vars if root exists (defensive) and values changed
       if (root) {
         root.style.setProperty("--mx", `${(px * 18).toFixed(2)}px`);
         root.style.setProperty("--my", `${(py * 12).toFixed(2)}px`);
       }
 
-      // Continue loop while rafRef is set; if it was cleared by the idle timer
-      // we shouldn't restart it here — onMove will restart when needed.
       rafRef.current = requestAnimationFrame(animate);
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
-
-    // Start the loop once so UI has initial state (but allow idle logic to stop it)
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("pointermove", onMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-      if (idleTimeoutRef.current) {
-        clearTimeout(idleTimeoutRef.current);
-        idleTimeoutRef.current = null;
-      }
+      if (idleTimeoutRef.current) clearTimeout(idleTimeoutRef.current);
     };
   }, []);
 
@@ -80,36 +63,39 @@ const About = () => {
 
       <div className="about-content">
 
-        {/* 1. Company History */}
+        {/* 1. Company Journey */}
         <section className="about-section history">
           <div className="section-inner">
             <h2 className="section-title">Our Journey</h2>
 
             <div className="history-grid">
               <div className="history-card">
-                <h3>Founded With Purpose</h3>
+                <h3>Built for Modern Workforces</h3>
                 <p>
-                  MyCompany began with a simple idea: people-first HR technology.
-                  We started as a small team solving payroll headaches — and quickly
-                  expanded into a full HRIS that puts employees and managers first.
+                  MyCompany was founded with a clear mission: to simplify how
+                  organizations manage people at scale. What began as a focused
+                  solution for payroll and attendance evolved into a complete
+                  HRIS platform designed for multi-company environments.
                 </p>
               </div>
 
               <div className="history-card">
-                <h3>Growth & Trust</h3>
+                <h3>Trusted Across Industries</h3>
                 <p>
-                  Over the years we partnered with startups and enterprises, refining
-                  workflows and delivering measurable improvements in productivity,
-                  compliance, and employee satisfaction.
+                  As organizations became more distributed and complex, we
+                  partnered with businesses across industries to streamline HR
+                  operations, ensure compliance, and improve employee experience
+                  through reliable and secure systems.
                 </p>
               </div>
 
               <div className="history-card">
-                <h3>Today</h3>
+                <h3>A Unified HR Platform</h3>
                 <p>
-                  Today MyCompany supports multi-location workforces with secure,
-                  scalable systems — helping leaders make data-driven decisions that
-                  matter.
+                  Today, MyCompany powers employee portals for multiple
+                  organizations—centralizing HR, payroll, attendance,
+                  documents, and reporting into one scalable platform tailored
+                  to each company’s structure.
                 </p>
               </div>
             </div>
@@ -126,8 +112,9 @@ const About = () => {
                 <div className="vm-icon">🔭</div>
                 <h3>Our Vision</h3>
                 <p>
-                  To create workplaces where every person feels seen, supported, and
-                  empowered to do their best work.
+                  To become the most trusted HR technology platform enabling
+                  organizations to manage people effortlessly while empowering
+                  employees with transparency and control over their work life.
                 </p>
               </div>
 
@@ -135,8 +122,9 @@ const About = () => {
                 <div className="vm-icon">⚙️</div>
                 <h3>Our Mission</h3>
                 <p>
-                  Build elegant, secure, and intuitive HR tools that remove friction,
-                  accelerate outcomes, and let teams focus on impact.
+                  To deliver secure, intuitive, and scalable HR solutions that
+                  support multi-company operations, reduce administrative
+                  complexity, and help teams focus on growth and impact.
                 </p>
               </div>
             </div>
@@ -151,13 +139,14 @@ const About = () => {
             <div className="leaders-grid">
               <article className="leader-card hover-tilt">
                 <div className="leader-photo">
-                  <img src={logo} alt="CEO" />
+                  <img src={logo} alt="Founder & CEO" />
                 </div>
                 <h4>Arjun Mehta</h4>
                 <p className="leader-role">Founder & CEO</p>
                 <p className="leader-bio">
-                  Visionary leader with 15+ years in building enterprise software and
-                  scaling teams across continents.
+                  Technology leader with over 15 years of experience building
+                  enterprise platforms and guiding organizations through
+                  digital transformation.
                 </p>
               </article>
 
@@ -168,31 +157,33 @@ const About = () => {
                 <h4>Ananya Sharma</h4>
                 <p className="leader-role">Chief Technology Officer</p>
                 <p className="leader-bio">
-                  Architect of resilient systems — leads engineering, platform, and
-                  data privacy efforts.
+                  Leads platform architecture, security, and scalability—ensuring
+                  MyCompany delivers reliable systems for large, distributed
+                  workforces.
                 </p>
               </article>
 
               <article className="leader-card hover-tilt">
                 <div className="leader-photo">
-                  <img src={logo} alt="Head People" />
+                  <img src={logo} alt="Head of People" />
                 </div>
                 <h4>Rahul Verma</h4>
                 <p className="leader-role">Head of People & Culture</p>
                 <p className="leader-bio">
-                  Builds people programs that blend empathy with measurable outcomes.
+                  Bridges technology and HR strategy to help organizations
+                  build compliant, transparent, and employee-centric processes.
                 </p>
               </article>
 
               <article className="leader-card hover-tilt">
                 <div className="leader-photo">
-                  <img src={logo} alt="Head Ops" />
+                  <img src={logo} alt="Head of Operations" />
                 </div>
                 <h4>Neha Kapoor</h4>
                 <p className="leader-role">Head of Operations</p>
                 <p className="leader-bio">
-                  Operations strategist focused on scaling processes and delivering
-                  consistent customer experience.
+                  Oversees operations and customer success, ensuring smooth
+                  onboarding and consistent value delivery across all clients.
                 </p>
               </article>
             </div>
@@ -207,32 +198,44 @@ const About = () => {
             <div className="awards-grid">
               <div className="award-card">
                 <div className="award-badge">🏆</div>
-                <h4>Best HR Tech Startup — 2023</h4>
-                <p>Recognized for innovation in HR automation and employee experience.</p>
+                <h4>Best HR Technology Platform — 2023</h4>
+                <p>
+                  Recognized for delivering scalable HR solutions supporting
+                  multi-company workforce management.
+                </p>
               </div>
 
               <div className="award-card">
                 <div className="award-badge">🌍</div>
-                <h4>Global Innovation Award — 2022</h4>
-                <p>Honored for scalable solutions that improved workforce efficiency.</p>
+                <h4>Innovation in Workforce Management — 2022</h4>
+                <p>
+                  Awarded for advancing automation in payroll, attendance,
+                  and employee lifecycle management.
+                </p>
               </div>
 
               <div className="award-card">
                 <div className="award-badge">⭐</div>
-                <h4>Rated 4.9/5 by clients</h4>
-                <p>High satisfaction across product, support, and outcomes.</p>
+                <h4>Customer Satisfaction Excellence</h4>
+                <p>
+                  Highly rated by organizations for reliability, usability,
+                  and long-term operational value.
+                </p>
               </div>
 
               <div className="award-card">
                 <div className="award-badge">🔒</div>
-                <h4>Security & Privacy Certified</h4>
-                <p>Certified standards for data protection and secure processing.</p>
+                <h4>Security & Compliance Certified</h4>
+                <p>
+                  Built with enterprise-grade security practices to protect
+                  employee data and meet regulatory requirements.
+                </p>
               </div>
             </div>
           </div>
         </section>
-        
-      <Departments/>
+
+        <Departments />
       </div>
     </div>
   );
